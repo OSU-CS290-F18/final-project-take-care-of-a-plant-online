@@ -1,0 +1,26 @@
+/* .nav-bar {
+    width: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+} */
+
+a {
+    text-decoration: none;
+    font-size: 25px;
+    color: goldenrod;
+    display: flex;
+    border-radius: 5px;
+    padding: 35px;
+}
+
+.menu {
+    display: table;
+    background-color: #EFEFEF;
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    top: 275px;
+    border-radius: 5px;
+}
