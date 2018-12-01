@@ -1,5 +1,5 @@
 {
-  "name": "master-Final-Project",
+  "name": "master-final-project",
   "version": "1.0.0",
   "description": "Web app for taking care of a plant online",
   "main": "server.js",
@@ -22,5 +22,7 @@
   "homepage": "https://github.com/OSU-CS290-F18/final-project-take-care-of-an-online-plant#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.12"
   }
 }
