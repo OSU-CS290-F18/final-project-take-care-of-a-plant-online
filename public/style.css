@@ -1,8 +1,14 @@
 header {
     background-color: #96C1AE;
     align-items: center;
-    display: flex;
-    position: relative;
+    display: inline-block;
+    height: 150px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin-bottom: 5px;
+    padding: 5px;
    }
    
    header img {
@@ -11,6 +17,9 @@ header {
    }
    
    .site-title {
+    position: relative;
+    top: -125px;
+    left: 150px;
     font-size: 50px;
     font-weight: 100;
     margin: 0 0 0 20px;
@@ -28,29 +37,35 @@ header {
    
    .content {
     display: flex;
+    position: relative;
+    top: 160px;
+    border: 5px solid black;
    }
    
    .menu {
       display: table;
       background-color: #E6E6C4;
-      position: absolute;
       width: 150px;
       height: 200px;
-      top: 275px;
       border-radius: 5px;
    }
    
+   .plant-and-button {
+      display: flex;
+      border: 5px solid black;
+      width: 75%;
+      height: 75%;
+      margin-top: 5px;
+      margin-left: 5px;
+   }
+
    .plant-image {
       display: inline-flex;
       flex-wrap: nowrap;
-      height: 250px;
+      height: 50%;
       vertical-align: middle;
-      width: 275px;
-      position: fixed;
-      top: 50%;
-      left: 40%;
-      margin-top: -50px;
-      margin-left: -100px;
+      width: 50%;
+      
    }
     .button {
     display: inline-block;
@@ -72,12 +87,10 @@ header {
    
    #tool-buttons {
     display: table;
-    position: absolute;
     width: 300px;
-    top: 275px;
+    height: 200px;
     border-radius: 5px;
     right: 250px;
-   right: 10px;
    }
    
    #tool-buttons button {
