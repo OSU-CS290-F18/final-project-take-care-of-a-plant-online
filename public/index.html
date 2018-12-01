@@ -1,28 +1,83 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <meta chaset="utf-8">
-        <title>Virtual Plant</title>
+   <head>
+       <meta chaset="utf-8">
+       <title>Virtual Plant</title>
 
-        <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="style.css">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.runtime.js"></script>
-        <script src="plantTemplate.js"></script>
-        <script src="index.js" charset="utf-8" defer></script>
+       <script src="index.js" charset="utf-8" defer></script>
 
 
-        <!-- This is where the css includes will go -->
-    </head>
-    <body>
-        <main class=content>
-            <aside class="menu">
-                <div class="nav-bar">
-                    <a href="#">Plant 1</a>
-                    <a href="#">Plant 2</a>
-                    <a href="#">Plant 3</a>
-                </div>
-            </aside>    
-        </main>
-    </body>
+       <!-- This is where the css includes will go -->
+   </head>
+   <body>
+       <header>
+           <div class="header-image">
+               <img src="https://www.misskatecuttables.com/uploads/shopping_cart/10912/large_cute-sunflower3.png" alt="Sunflower">
+           </div>
+           <div class="site-title">Virtual Plant</div>
+           <!-- this could be dynamic in a handlebar -->
+       </header>
+       <main class=content>
+           <aside class="menu">
+               <div class="nav-bar">
+                   <a href="#">Plant 1</a>
+                   <a href="#">Plant 2</a>
+                   <a href="#">Plant 3</a>
+                   <button>Add Plant</button>
+                   <!-- we can mess around with the css later this is just a general idea -->
+               </div>
+           </aside> 
+
+           <div class="plant-image">
+               <img src="https://vignette.wikia.nocookie.net/villains/images/4/43/Flowey_the_Flower.jpg/revision/latest?cb=20160129183256" alt="Flower">
+           </div>
+          
+           <section id="tool-buttons">
+               <div class=button>
+                   <div class="button-contents">
+                       <button>Water</button>
+                   </div>
+               </div>
+
+               <div class=button>
+                   <div class="button-contents">
+                       <button>Fertilize</button>
+                   </div>
+               </div>
+
+               <div class=button>
+                   <div class="button-contents">
+                       <button>Sunlight</button>
+                   </div>
+               </div>
+
+               <div class=button>
+                   <div class="button-contents">
+                       <button>Rename</button>
+                   </div>
+               </div>
+
+               <div class=button>
+                   <div class="button-contents">
+                       <button>About</button>
+                   </div>
+               </div>
+
+               <div class=button>
+                   <div class="button-contents">
+                       <button>Uproot</button>
+                   </div>
+               </div>
+           </section>
+
+           <div>
+                   <div>Water Progress</div>
+                   <!--  this can be whether or not the guy waters the flower -->
+               </div>
+       </main>
+   </body>
 
 </html>
+
