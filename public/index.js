@@ -154,10 +154,10 @@ function addPlant() { // new plant
     plantTitleLink.setAttribute('href', "#");
     plantTitleLink.classList.add('plant-title');
     // currentPlantIndex = 4;
-    // document.body.appendChild(plantAndButtonContainer);
+    document.body.appendChild(plantAndButtonContainer);
     // allPlantsTitle.appendChild(plantTitleLink);
     // document.body.appendChild(plantTitleLink);
-    allPlantsContainerSection.appendChild(plantAndButtonContainer);
+    // allPlantsContainerSection.appendChild(plantAndButtonContainer);
 }
 
 document.getElementById('water').addEventListener('click', waterPlant);
