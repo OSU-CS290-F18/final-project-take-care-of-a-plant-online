@@ -50,15 +50,35 @@ function uprootPlant() { // delete the plant
     allPlantsTitle[currentPlantIndex].parentNode.removeChild(allPlantsTitle[currentPlantIndex]);
 }
 
-function addPlant() { // new plant
-    console.log("add plant");
-    
-    //get user inputs
-    // var plantName = document.getElementById('').value;
-    // var plantImage = document.getElementById('').value;
-    var plantName = "My Plant";
-    var plantImageSource = "Plant_for_Final_Project.jpg";
+function addPlantButton(){ // calls when add plant button is clicked
+    document.getElementById('modal-backdrop').classList.toggle('hidden'); //unhide backdrop
+    document.getElementById('add-plant-modal').classList.toggle('hidden'); //unhide modal
+}
 
+function closeModal(){
+    document.getElementById('modal-backdrop').classList.toggle('hidden'); //hide backdrop
+    document.getElementById('add-plant-modal').classList.toggle('hidden'); //hide modal
+
+    var plantName = document.getElementById('flower-name-input').value = '';
+    var plantImageSource = document.getElementById('flower-photo-input').value = '';
+    var plantAboutMeInfo = document.getElementById('flower-about-input').value = '';
+}
+
+function acceptModal(){
+    var plantName = document.getElementById('flower-name-input').value;
+    var plantImageSource = document.getElementById('flower-photo-input').value;
+    var plantAboutMeInfo = document.getElementById('flower-about-input').value;
+
+    if( (!plantName) || (!plantImageSource) || (!plantAboutMeInfo) ){
+        alert("All fields must be filled out."); //send an alert saying this
+    }
+    else{
+        closeModal();
+        addPlant(plantName, plantImageSource, plantAboutMeInfo);
+    }
+}
+
+function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     // plant and button div
     var plantAndButtonContainer = document.createElement('div');
     plantAndButtonContainer.classList.add('plant-and-button');
@@ -160,13 +180,20 @@ function addPlant() { // new plant
     // allPlantsContainerSection.appendChild(plantAndButtonContainer);
 }
 
+// Add functions to buttons
 document.getElementById('water').addEventListener('click', waterPlant);
 document.getElementById('fertilize').addEventListener('click', fertilizePlant);
 document.getElementById('sunlight').addEventListener('click', sunlightPlant);
 document.getElementById('rename').addEventListener('click', renamePlant);
 document.getElementById('about').addEventListener('click', aboutPlant);
 document.getElementById('uproot').addEventListener('click', uprootPlant);
-document.getElementById('add-plant').addEventListener('click', addPlant);
+document.getElementById('add-plant').addEventListener('click', addPlantButton);
+
+// Cancelling the modal
+document.getElementById('modal-cancel').addEventListener('click', closeModal);
+document.getElementById('modal-close').addEventListener('click', closeModal);
+// Accepting the modal
+document.getElementById('modal-accept').addEventListener('click', acceptModal);
 
 // when page loads add click listeners to plant names
 window.addEventListener('DOMContentLoaded', function () {
