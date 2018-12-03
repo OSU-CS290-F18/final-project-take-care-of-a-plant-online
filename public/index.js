@@ -59,9 +59,9 @@ function closeModal(){
     document.getElementById('modal-backdrop').classList.toggle('hidden'); //hide backdrop
     document.getElementById('add-plant-modal').classList.toggle('hidden'); //hide modal
 
-    var plantName = document.getElementById('flower-name-input').value = '';
-    var plantImageSource = document.getElementById('flower-photo-input').value = '';
-    var plantAboutMeInfo = document.getElementById('flower-about-input').value = '';
+    document.getElementById('flower-name-input').value = '';
+    document.getElementById('flower-photo-input').value = '';
+    document.getElementById('flower-about-input').value = '';
 }
 
 function acceptModal(){
@@ -180,24 +180,27 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     // allPlantsContainerSection.appendChild(plantAndButtonContainer);
 }
 
-// Add functions to buttons
-document.getElementById('water').addEventListener('click', waterPlant);
-document.getElementById('fertilize').addEventListener('click', fertilizePlant);
-document.getElementById('sunlight').addEventListener('click', sunlightPlant);
-document.getElementById('rename').addEventListener('click', renamePlant);
-document.getElementById('about').addEventListener('click', aboutPlant);
-document.getElementById('uproot').addEventListener('click', uprootPlant);
-document.getElementById('add-plant').addEventListener('click', addPlantButton);
-
-// Cancelling the modal
-document.getElementById('modal-cancel').addEventListener('click', closeModal);
-document.getElementById('modal-close').addEventListener('click', closeModal);
-// Accepting the modal
-document.getElementById('modal-accept').addEventListener('click', acceptModal);
-
 // when page loads add click listeners to plant names
 window.addEventListener('DOMContentLoaded', function () {
+    // Opening the modal
+    document.getElementById('add-plant').addEventListener('click', addPlantButton);
+    // Cancelling the modal
+    document.getElementById('modal-cancel').addEventListener('click', closeModal);
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    // Accepting the modal
+    document.getElementById('modal-accept').addEventListener('click', acceptModal);
+
+    // add functions to buttons
+    document.getElementsByClassName('water')[0].addEventListener('click', waterPlant);
+    document.getElementsByClassName('fertilize')[0].addEventListener('click', fertilizePlant);
+    document.getElementsByClassName('sunlight')[0].addEventListener('click', sunlightPlant);
+    document.getElementsByClassName('rename')[0].addEventListener('click', renamePlant);
+    document.getElementsByClassName('about')[0].addEventListener('click', aboutPlant);
+    document.getElementsByClassName('uproot')[0].addEventListener('click', uprootPlant);
+    
+    // apply indexes
     for(var i = allPlantsTitle.length - 1; i >= 0; i--){
         allPlantsTitle[i].addEventListener('click', changeCurrentIndex);
     }
+
 });
