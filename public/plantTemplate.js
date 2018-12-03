@@ -1,0 +1,14 @@
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['plant'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<div class=\"plant-and-button\">\r\n    <div class=\"plant-image\">\r\n        <img src="
+    + alias4(((helper = (helper = helpers.photoURL || (depth0 != null ? depth0.photoURL : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"photoURL","hash":{},"data":data}) : helper)))
+    + " alt=\"Flower\">\r\n        <!-- \"https://vignette.wikia.nocookie.net/villains/images/4/43/Flowey_the_Flower.jpg/revision/latest?cb=20160129183256 -->\r\n    </div>\r\n\r\n    <div class=\"name-container\">\r\n        <a class=\"name\">"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</a>\r\n    </div>\r\n\r\n    <section class=\"tool-buttons\">\r\n        <div class=button>\r\n            <div class=\"button-contents\">\r\n                <button class=\"water\">Water</button>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=button>\r\n            <div class=\"button-contents\">\r\n                <button class=\"fertilize\">Fertilize</button>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=button>\r\n            <div class=\"button-contents\">\r\n                <button class=\"sunlight\">Sunlight</button>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=button>\r\n            <div class=\"button-contents\">\r\n                <button class=\"rename\">Rename</button>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=button>\r\n            <div class=\"button-contents\">\r\n                <button class=\"about\">About</button>\r\n            </div>\r\n            <div class=\"talk-bubble tri-right round btm-left hidden\">\r\n                <div class=\"talktext\">\r\n                    <p>"
+    + alias4(((helper = (helper = helpers.about || (depth0 != null ? depth0.about : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"about","hash":{},"data":data}) : helper)))
+    + "</p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=button>\r\n            <div class=\"button-contents\">\r\n                <button class=\"uproot\">Uproot</button>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>";
+},"useData":true});
+})();
