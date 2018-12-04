@@ -8,7 +8,7 @@ var allPlantsTitle = document.querySelectorAll('.plant-title');
 var allPlantsContainerNode = document.querySelectorAll('.plant-and-button');
 var allPlantsContainer = Array.prototype.slice.call(allPlantsContainerNode); // convert the node to an array; https://davidwalsh.name/nodelist-array
 var currentPlantIndex = 0;
-var allPlantsContainerSection = document.getElementById('all-plants')
+var allPlantsContainerSection = document.getElementById('plants')
 
 function changeCurrentIndex(event) { // changes the index when switching plants
     for(var i = allPlantsTitle.length - 1; i >= 0; i--){
@@ -19,24 +19,27 @@ function changeCurrentIndex(event) { // changes the index when switching plants
 }
 
 function waterPlant() {
-    console.log("watering");
-    // unhide watering can that waters the plant
-    // change plant picture to bigger plant
-    // update water progress
+    // unhide watering can
+    document.getElementsByClassName('plant-watered')[0].classList.toggle('hidden');
 }
 
 function fertilizePlant() {
     console.log("fert");
     // unhide fertilizer bag
+    document.getElementsByClassName('plant-fert')[0].classList.toggle('hidden');
 }
 
 function sunlightPlant() {
     console.log("sun");
     // unhide sunlight
+    document.getElementsByClassName('plant-sun')[0].classList.toggle('hidden');
 }
 
 function renamePlant() {
     allPlantsTitle[currentPlantIndex].textContent = "renamed";
+    var test1 = document.getElementsByClassName('plant-nametag')[0].textContent;
+    console.log(test1)
+    // test1 = "renamed";
 }
 
 function aboutPlant() {
@@ -88,7 +91,8 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     var postHTML = Handlebars.templates.plant(plantInfo); // turn into dom element
     // var postsContainer = document.getElementById('posts'); // array of post containers
     // postsContainer.insertAdjacentHTML('beforeend', postHTML); // append to end
-    document.body.insertAdjacentHTML('beforeend', postHTML);
+    // document.body.insertAdjacentHTML('beforeend', postHTML);
+    allPlantsContainerSection.insertAdjacentHTML('beforeend', postHTML);
 
 
 
