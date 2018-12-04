@@ -2,7 +2,7 @@ var path = require('path');
 var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3870;
 var plantData = require('./plantData');
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));

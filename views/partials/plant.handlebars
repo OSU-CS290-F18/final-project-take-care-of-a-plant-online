@@ -42,6 +42,24 @@
             <div class="button-contents">
                 <button class="rename">Rename</button>
             </div>
+            <div id="modal-backdrop" class="hidden-name-modal"></div>
+            <div id="add-plant-modal" class="hidden-name-modal">
+                <div class="modal-plant-name">
+                    <div class="modal-header">
+                        <h3>Rename</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-element">
+                            <label for="flower-name-input">New Name</label>
+                            <input id="flower-name-input" type="text">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="modal-cancel" class="modal-hide-button action-button">Cancel</button>
+                        <button type="button" id="modal-accept" class="action-button">Rename My Plant!</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class=button>

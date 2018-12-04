@@ -68,14 +68,13 @@ body {
   display: table;
   background-color: #E6E6C4;
   width: 150px;
-  height: 200px;
+  height: 75px;
   border-radius: 5px;
   margin: 5px;
 }
 
 .plant-and-button {
   display: flex;
-  border: 5px solid black;
   height: 500px;
   width: 1000px;
   margin-top: 5px;
@@ -255,6 +254,20 @@ body {
 
 #modal-cancel:hover {
   background-color: #eee;
+}
+
+.modal-plant-name {
+  width: auto;
+  max-width: 600px;
+  min-width: 350px;
+  min-height: 100px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.hidden-name-modal {
+  display: none;
 }
 
 /*Talk bubble*/
