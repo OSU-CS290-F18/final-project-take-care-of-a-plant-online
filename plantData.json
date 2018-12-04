@@ -1,1 +1,7 @@
-dfjs
+[
+    {
+        "photoURL": "public/Plant_for_Final_Project.jpg",
+        "about": "about the plant",
+        "name": "Plant Name"
+    }
+]
