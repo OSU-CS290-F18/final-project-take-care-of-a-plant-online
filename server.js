@@ -3,7 +3,6 @@ var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
 
-/*
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 
@@ -17,7 +16,6 @@ var mongoURL = "mongodb://" +
     mongoUsername + ":" + mongoPassword + "@" + mongoHost + ":" + mongoPort + "/" + mongoDBName;
 
 var mongoDB = null;
-*/
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -44,16 +42,14 @@ app.get('*', function (req, res, next) {
     res.status(404).render('404');
 });
 
-/*
 MongoClient.connect(mongoURL, function (err, client) {
     if (err) {
         throw err;
     }
     mongoDB = client.db(mongoDBName);
-    //server listen here
-});
-*/
-
-app.listen(port, function() {
+    app.listen(port, function() {
         console.log("== Server is listening on port", port);
     });
+});
+
+
