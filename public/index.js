@@ -56,15 +56,15 @@ function sunlightPlant() {
 function renamePlant() {
     currentPlantIndex = updateCurrentIndex(event);
     allPlantsTitle[currentPlantIndex].textContent = "renamed";
-    // var test1 = document.getElementsByClassName('plant-nametag')[currentPlantIndex].textContent;
-    // console.log(test1)
-    // test1 = "renamed";
+    var test1 = document.getElementsByClassName('plant-name');
+    console.log(test1)
+    test1[currentPlantIndex].textContent = "renamed";
 }
 
 function aboutPlant() {
     console.log("about");
     // show description
-    
+
 }
 
 function uprootPlant() { // delete the plant
