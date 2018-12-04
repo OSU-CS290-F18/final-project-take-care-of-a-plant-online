@@ -26,7 +26,6 @@ var allToolButtons = document.getElementsByClassName('tool-buttons');
 function updateCurrentIndex(event){
     for(var i = 0; i < allToolButtons.length; i++){
         if(allToolButtons[i] == event.target.parentNode.parentNode.parentNode){
-            // currentPlantIndex = i;
             return i;
         }
     }
@@ -40,14 +39,12 @@ function waterPlant() {
 }
 
 function fertilizePlant() {
-    console.log("fert");
     // unhide fertilizer bag
     currentPlantIndex = updateCurrentIndex(event);
     document.getElementsByClassName('plant-fert')[currentPlantIndex].classList.remove('hidden');
 }
 
 function sunlightPlant() {
-    console.log("sun");
     // unhide sunlight
     currentPlantIndex = updateCurrentIndex(event);
     document.getElementsByClassName('plant-sun')[currentPlantIndex].classList.remove('hidden');
@@ -55,26 +52,23 @@ function sunlightPlant() {
 
 function renamePlant() {
     currentPlantIndex = updateCurrentIndex(event);
-    allPlantsTitle[currentPlantIndex].textContent = "renamed";
     var test1 = document.getElementsByClassName('plant-name');
-    console.log(test1)
     test1[currentPlantIndex].textContent = "renamed";
 }
 
 function aboutPlant() {
-    console.log("about");
     // show description
-
+    currentPlantIndex = updateCurrentIndex(event);
+    var textBubble = document.getElementsByClassName('talk-bubble');
+    textBubble[currentPlantIndex].classList.toggle('hidden-bubble');
 }
 
 function uprootPlant() { // delete the plant
     var allPlantsContainerNode2 = document.querySelectorAll('.plant-and-button');
     var allPlantsContainer2 = Array.prototype.slice.call(allPlantsContainerNode2); // convert the node to an array; https://davidwalsh.name/nodelist-array
     currentPlantIndex = updateCurrentIndex(event);
-    console.log(allPlantsContainer2)
     allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]);
     allPlantsContainer.splice(currentPlantIndex,1)
-    console.log(allPlantsContainer)
 }
 
 function addPlantButton(){ // calls when add plant button is clicked
@@ -100,8 +94,8 @@ function acceptModal(){
         alert("All fields must be filled out."); //send an alert saying this
     }
     else{
-        closeModal();
         addPlant(plantName, plantImageSource, plantAboutMeInfo);
+        closeModal();
     }
 }
 
