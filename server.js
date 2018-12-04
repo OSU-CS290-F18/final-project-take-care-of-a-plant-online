@@ -25,18 +25,37 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
-app.get('/', function(req, res, next) {
-    res.status(200).render('plantPage', {
-    })
+app.get(['/', '/plants'], function (req, res, next) {
+    var plantCollection = mongoDB.collection('plants');
+    plantCollection.find({}).toArray(function (err, plantDocs) {
+        if (err) {
+            res.status(500).send("Error communicating with DB.");
+        }
+        res.status(200).render('plantPage', {
+            plants: plantDocs
+        });
+    });
 });
 
-/*
-app.get('/plants/:plant', function (req, res, next) {
+app.get('/plants/:plant', function(req, res, next) {
     var plant = req.params.plant.toLowerCase();
     var plantCollection = mongoDB.collection('plants');
-    plantCollection.find({ plantId: plant }).toArray(function (err, ))
+    plantCollection.find({ name: plant }).toArray(function (err, plantDocs) {
+        if (err) {
+            res.status(500).send("Error communicating with DB.");
+        }
+        else if (peopleDocs.length > 0) {
+            res.status(200).render('plantPage', plantDocs[0]);
+        }
+        else {
+            next();
+        }
+    });
 });
-*/
+
+app.post('/plants/:name/', function (req, res, next) {
+
+});
 
 app.get('*', function (req, res, next) {
     res.status(404).render('404');
