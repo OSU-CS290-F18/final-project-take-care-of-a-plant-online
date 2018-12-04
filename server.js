@@ -20,7 +20,7 @@ var mongoDB = null;
 var app = express();
 var port = process.env.PORT || 3000;
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
@@ -37,7 +37,7 @@ app.get(['/', '/plants'], function (req, res, next) {
     });
 });
 
-app.get('/plants/:plant', function(req, res, next) {
+app.get('/plants/:plant', function (req, res, next) {
     var plant = req.params.plant.toLowerCase();
     var plantCollection = mongoDB.collection('plants');
     plantCollection.find({ name: plant }).toArray(function (err, plantDocs) {
@@ -61,14 +61,16 @@ app.get('*', function (req, res, next) {
     res.status(404).render('404');
 });
 
-MongoClient.connect(mongoURL, function (err, client) {
-    if (err) {
-        throw err;
-    }
-    mongoDB = client.db(mongoDBName);
-    app.listen(port, function() {
-        console.log("== Server is listening on port", port);
-    });
+// MongoClient.connect(mongoURL, function (err, client) {
+//     if (err) {
+//         throw err;
+//     }
+//     mongoDB = client.db(mongoDBName);
+//     app.listen(port, function () {
+//         console.log("== Server is listening on port", port);
+//     });
+// });
+
+app.listen(port, function () {
+    console.log("== Server is listening on port", port);
 });
-
-
