@@ -21,120 +21,60 @@ var aboutButton = document.getElementsByClassName('about');
 var uprootButton = document.getElementsByClassName('uproot');
 
 var allToolButtons = document.getElementsByClassName('tool-buttons');
-var allButtons = document.getElementsByClassName('button');
+// var allButtons = document.getElementsByClassName('button');
 
 function updateCurrentIndex(event){
-    console.log("an element was clicked.");
-    // console.log("target: ", event.target);
-    // console.log("current: ", event.currentTarget);
-
-    // console.log("pparent: ", event.target.parentNode.parentNode)
-    // console.log("pparent: ", event.target.parentNode.parentNode.parentNode)
-
     for(var i = 0; i < allToolButtons.length; i++){
-        if(allToolButtons[0] == event.target.parentNode.parentNode.parentNode){
-            currentPlantIndex = i;
+        if(allToolButtons[i] == event.target.parentNode.parentNode.parentNode){
+            // currentPlantIndex = i;
             return i;
         }
     }
-    // test1 = "cat"
-    // if(test1.indexOf("at")){
-    //     console.log("true")
-    // }
-
-    // console.log("alltools: ", allToolButtons[0]);
-    // console.log("allbuttons: ", allButtons[0]);
-    // var test1 = allToolButtons[0].childNodes;
-    // var test2 = allButtons[0].childNodes;
-    // console.log(test1)
-    // console.log(test2)
-    // if(allButtons[0] == event.target){
-    //     console.log("true!");
-    // }
-    // if(allToolButtons[0] == event.target){
-    //     console.log("true!");
-    // }
-    // if(test1[0] == event.target){
-    //     console.log("true!");
-    // }
-    // if(test2[0] == event.target){
-    //     console.log("true!");
-    // }
-
-    // console.log(event.target)
-    // console.log(event.currentTarget)
-    // console.log(allToolButtons)
-    // // console.log("children: ", allToolButtons[0].childNodes)
-    // var test1 = allToolButtons[0].childNodes;
-    // console.log("test1", test1)
-    // var test2 = test1[1].childNodes;
-    // console.log("test2: ", test2)
-    // console.log("alltools: ", allToolButtons[0])
-    // console.log("allbuttons[0]: ",allButtons[indexNum])
-    // for(var i = indexNum; i < allButtons.length; i += 6){
-    //     console.log(i)
-    //     if(allButtons[i] == event.currentTarget){
-    //         console.log(i, "is true")
-    //     }
-    // }
-    // for(var i = 0; i < allToolButtons.length; i++){
-    //     if(allToolButtons[i] == event.currentTarget){
-    //         console.log("i: ", i)
-    //         currentPlantIndex = i;
-    //         // return i;
-    //     }
-    // }
-    // console.log("current index: ",currentPlantIndex);
-    
 }
-
-// function changeCurrentIndex(event) { // changes the index when switching plants
-//     for(var i = allPlantsTitle.length - 1; i >= 0; i--){
-//         if(allPlantsTitle[i] == event.target){
-//             currentPlantIndex = i;
-//         }
-//     }
-//     // console.log(currentPlantIndex)
-// }
 
 function waterPlant() {
     // unhide watering can
     currentPlantIndex = updateCurrentIndex(event);
-    console.log("water index: ", currentPlantIndex)
-    
-    
-
+    console.log(currentPlantIndex)
     waterIcon[currentPlantIndex].classList.remove('hidden');
 }
 
 function fertilizePlant() {
     console.log("fert");
     // unhide fertilizer bag
-    document.getElementsByClassName('plant-fert')[0].classList.remove('hidden');
+    currentPlantIndex = updateCurrentIndex(event);
+    document.getElementsByClassName('plant-fert')[currentPlantIndex].classList.remove('hidden');
 }
 
 function sunlightPlant() {
     console.log("sun");
     // unhide sunlight
-    document.getElementsByClassName('plant-sun')[0].classList.remove('hidden');
+    currentPlantIndex = updateCurrentIndex(event);
+    document.getElementsByClassName('plant-sun')[currentPlantIndex].classList.remove('hidden');
 }
 
 function renamePlant() {
+    currentPlantIndex = updateCurrentIndex(event);
     allPlantsTitle[currentPlantIndex].textContent = "renamed";
-    var test1 = document.getElementsByClassName('plant-nametag')[0].textContent;
-    console.log(test1)
+    // var test1 = document.getElementsByClassName('plant-nametag')[currentPlantIndex].textContent;
+    // console.log(test1)
     // test1 = "renamed";
 }
 
 function aboutPlant() {
     console.log("about");
     // show description
+    
 }
 
 function uprootPlant() { // delete the plant
-    // plantContainer[currentPlantIndex].parentNode.removeChild(plantContainer[currentPlantIndex]);
-    allPlantsContainer[0].parentNode.removeChild(allPlantsContainer[0]);
-    allPlantsTitle[currentPlantIndex].parentNode.removeChild(allPlantsTitle[currentPlantIndex]);
+    var allPlantsContainerNode2 = document.querySelectorAll('.plant-and-button');
+    var allPlantsContainer2 = Array.prototype.slice.call(allPlantsContainerNode2); // convert the node to an array; https://davidwalsh.name/nodelist-array
+    currentPlantIndex = updateCurrentIndex(event);
+    console.log(allPlantsContainer2)
+    allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]);
+    allPlantsContainer.splice(currentPlantIndex,1)
+    console.log(allPlantsContainer)
 }
 
 function addPlantButton(){ // calls when add plant button is clicked
@@ -172,13 +112,20 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
         about:plantAboutMeInfo
     };
 
+    allPlantsContainer.push(plantInfo);
+    // allPlantsContainer.push(postHTML);
+
     var postHTML = Handlebars.templates.plant(plantInfo); // turn into dom element
-    // var postsContainer = document.getElementById('posts'); // array of post containers
-    // postsContainer.insertAdjacentHTML('beforeend', postHTML); // append to end
-    // document.body.insertAdjacentHTML('beforeend', postHTML);
     allPlantsContainerSection.insertAdjacentHTML('beforeend', postHTML);
 
-    waterButton[1].addEventListener('click', waterPlant);
+    indexNum = allPlantsContainer.length - 1;
+    waterButton[indexNum].addEventListener('click', waterPlant);
+    fertButton[indexNum].addEventListener('click', fertilizePlant);
+    sunButton[indexNum].addEventListener('click', sunlightPlant);
+    renameButton[indexNum].addEventListener('click', renamePlant);
+    aboutButton[indexNum].addEventListener('click', aboutPlant);
+    uprootButton[indexNum].addEventListener('click', uprootPlant);
+
 
     // // plant and button div
     // var plantAndButtonContainer = document.createElement('div');
@@ -298,11 +245,4 @@ window.addEventListener('DOMContentLoaded', function () {
     renameButton[0].addEventListener('click', renamePlant);
     aboutButton[0].addEventListener('click', aboutPlant);
     uprootButton[0].addEventListener('click', uprootPlant);
-    
-
-
-    // apply indexes
-    // for(var i = allPlantsTitle.length - 1; i >= 0; i--){
-    //     allPlantsTitle[i].addEventListener('click', changeCurrentIndex);
-    // }
 });
