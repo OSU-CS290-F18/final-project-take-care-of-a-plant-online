@@ -81,21 +81,23 @@ body {
   border-radius: 5px;
 }
 
+#plants {}
+
 .plant-and-button {
   display: flex;
   border: 5px solid black;
-  width: 75%;
-  height: 75%;
+  height: 500px;
+  width: 1000px;
   margin-top: 5px;
   margin-left: 5px;
 }
 
 .plant-image {
-  display: inline-flex;
+  display: flex;
   flex-wrap: nowrap;
-  height: 50%;
+  height: 500px;
   vertical-align: middle;
-  width: 50%;
+  width: 400px;
 }
 
 .button {
@@ -121,7 +123,8 @@ body {
   width: 300px;
   height: 200px;
   border-radius: 5px;
-  right: 250px;
+  left: 900px;
+  /* right: 250px; */
 }
 
 .tool-buttons button {
@@ -216,7 +219,7 @@ body {
   flex: 6 200px;
   padding: 8px;
   font-size: 20px;
-  border: 1px solid #aaa;
+  border: 1px solid white
 }
 
 .modal-footer {
@@ -231,7 +234,7 @@ body {
 
 #modal-cancel {
   color: #333;
-  background-color: #fff;
+  background-color: #E6E6C4;
 }
 
 #modal-cancel:hover {
@@ -246,39 +249,13 @@ body {
   position: relative;
   width: 200px;
   height: auto;
-  background-color: lightyellow;
+  background-color: #E6E6C4;
 }
 
 .round {
   border-radius: 30px;
   border-radius: 30px;
 }
-
-/* .tri-right:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -40px;
-  right: auto;
-  top: -8px;
-  bottom: auto;
-  border: 32px solid;
-  border-color: #666 transparent transparent transparent;
-}
-
-btm-left:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -8px;
-  right: auto;
-  top: auto;
-  bottom: -40px;
-  border: 32px solid;
-  border-color: transparent transparent transparent #666;
-} */
 
 .tri-right.btm-left:after {
   content: ' ';
@@ -290,5 +267,10 @@ btm-left:before {
   top: auto;
   bottom: -20px;
   border: 22px solid;
-  border-color: transparent transparent transparent lightyellow;
+  border-color: transparent transparent transparent #E6E6C4;
+}
+
+.talktext {
+  font-family: 'Montserrat', sans-serif;
+  color: #7E497F;
 }
