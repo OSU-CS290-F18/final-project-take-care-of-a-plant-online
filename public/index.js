@@ -9,6 +9,7 @@ var allPlantsContainerNode = document.querySelectorAll('.plant-and-button');
 var allPlantsContainer = Array.prototype.slice.call(allPlantsContainerNode); // convert the node to an array; https://davidwalsh.name/nodelist-array
 var currentPlantIndex = 0;
 var allPlantsContainerSection = document.getElementById('plants')
+var waterButton = document.getElementsByClassName('plant-watered')
 
 function changeCurrentIndex(event) { // changes the index when switching plants
     for(var i = allPlantsTitle.length - 1; i >= 0; i--){
@@ -16,23 +17,30 @@ function changeCurrentIndex(event) { // changes the index when switching plants
             currentPlantIndex = i;
         }
     }
+    // console.log(event.target)
+    // console.log(event.currentTarget)
 }
 
-function waterPlant() {
+function waterPlant(event) {
+    console.log("watering")
     // unhide watering can
-    document.getElementsByClassName('plant-watered')[0].classList.toggle('hidden');
+    // document.getElementsByClassName('plant-watered')[0].classList.remove('hidden');
+    waterButton[0].classList.remove('hidden');
+    // console.log(event.target)
+    // console.log(event.currentTarget)
+    // changeCurrentIndex(event);
 }
 
 function fertilizePlant() {
     console.log("fert");
     // unhide fertilizer bag
-    document.getElementsByClassName('plant-fert')[0].classList.toggle('hidden');
+    document.getElementsByClassName('plant-fert')[0].classList.remove('hidden');
 }
 
 function sunlightPlant() {
     console.log("sun");
     // unhide sunlight
-    document.getElementsByClassName('plant-sun')[0].classList.toggle('hidden');
+    document.getElementsByClassName('plant-sun')[0].classList.remove('hidden');
 }
 
 function renamePlant() {
@@ -94,7 +102,8 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     // document.body.insertAdjacentHTML('beforeend', postHTML);
     allPlantsContainerSection.insertAdjacentHTML('beforeend', postHTML);
 
-
+    // waterButton[1].addEventListener('click', waterPlant);
+    console.log("waterbutton: ",waterButton[1])
 
     // // plant and button div
     // var plantAndButtonContainer = document.createElement('div');
