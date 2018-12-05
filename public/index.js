@@ -99,7 +99,7 @@ function closeModal() {
     document.getElementById('add-plant-modal').classList.toggle('hidden'); //hide modal
 
     // reset inputs
-    document.getElementById('flower-newname-input').value = '';
+    document.getElementById('flower-name-input').value = '';
     document.getElementById('flower-photo-input').value = '';
     document.getElementById('flower-about-input').value = '';
 }
@@ -129,9 +129,13 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     // mongoDB stuff -----
     var postRequest = new XMLHttpRequest();
     var requestURL = '/plants/addPlant';
+    postRequest.open('POST', requestURL)
     var requestBody = JSON.stringify({
-        plantInfo
+        name: plantName,
+        photoURL: plantImageSource,
+        about: plantAboutMeInfo
     });
+    postRequest.send(requestBody);
 
     // client side stuff -----
     var postHTML = Handlebars.templates.plant(plantInfo); // turn into dom element
@@ -149,6 +153,7 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     renameButton[indexNum].addEventListener('click', renamePlant);
     aboutButton[indexNum].addEventListener('click', aboutPlant);
     uprootButton[indexNum].addEventListener('click', uprootPlant);
+
 
 
     // // plant and button div
