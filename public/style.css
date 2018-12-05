@@ -319,6 +319,8 @@ body {
 .talktext {
   font-family: 'Montserrat', sans-serif;
   color: #7E497F;
+  justify-content: center;
+  margin: 10px;
 }
 
 .hidden-bubble {
