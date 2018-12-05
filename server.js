@@ -49,6 +49,8 @@ var mongoDB = null;
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+app.use(bodyParser.json())
+
 app.use(express.static('public'));
 
 app.get(['/', '/plants'], function (req, res, next) {
