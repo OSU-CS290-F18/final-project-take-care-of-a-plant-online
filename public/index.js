@@ -141,12 +141,14 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     // mongoDB stuff -----
     var postRequest = new XMLHttpRequest();
     var requestURL = '/plants/addPlant';
-    postRequest.open('POST', requestURL)
+    postRequest.open('POST', requestURL);
     var requestBody = JSON.stringify({
-        "name": plantName,
-        "photoURL": plantImageSource,
-        "about": plantAboutMeInfo
+        name: plantName,
+        photoURL: plantImageSource,
+        about: plantAboutMeInfo
     });
+    console.log("request body: ", requestBody);
+    // console.log(postRequest);
     postRequest.send(requestBody);
 
     // client side stuff -----
