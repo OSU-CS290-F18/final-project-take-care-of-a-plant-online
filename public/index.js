@@ -20,9 +20,9 @@ var uprootButton = document.getElementsByClassName('uproot'); // array of uproot
 var allToolButtons = document.getElementsByClassName('tool-buttons'); // array of button toolbars
 
 function updateCurrentIndex(event) { // checks to see which button was pressed
-    for (var i = 0; i < allToolButtons.length; i++) {
-        if (allToolButtons[i] == event.target.parentNode.parentNode.parentNode) {
-            return i;
+    for (var i = 0; i < allToolButtons.length; i++) { // loop for length of plants
+        if (allToolButtons[i] == event.target.parentNode.parentNode.parentNode) { // if target is a button of this index
+            return i; // return index number
         }
     }
 }
@@ -30,19 +30,19 @@ function updateCurrentIndex(event) { // checks to see which button was pressed
 function waterPlant() { // function for water button
     // unhide watering can
     currentPlantIndex = updateCurrentIndex(event);
-    document.getElementsByClassName('plant-watered')[currentPlantIndex].classList.remove('hidden');
+    document.getElementsByClassName('plant-watered')[currentPlantIndex].classList.remove('hidden'); // show water icon
 }
 
 function fertilizePlant() { // function for fertilize button
     // unhide fertilizer bag
     currentPlantIndex = updateCurrentIndex(event);
-    document.getElementsByClassName('plant-fert')[currentPlantIndex].classList.remove('hidden');
+    document.getElementsByClassName('plant-fert')[currentPlantIndex].classList.remove('hidden'); // show fertilize icon
 }
 
 function sunlightPlant() { // function for sunlight button
     // unhide sunlight
     currentPlantIndex = updateCurrentIndex(event);
-    document.getElementsByClassName('plant-sun')[currentPlantIndex].classList.remove('hidden');
+    document.getElementsByClassName('plant-sun')[currentPlantIndex].classList.remove('hidden'); // show sun icon
 }
 
 function renamePlant() { // function for sunlight rename button
