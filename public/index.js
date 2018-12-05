@@ -52,8 +52,6 @@ function renamePlant() { // function for sunlight rename button
 }
 
 function acceptRename() { // function for accepting rename
-    // console.log("accept pushed");
-
     // client side stuff
     var plantNewName = document.getElementById('flower-newname-input').value; // get user input
     var plantOldName = document.getElementsByClassName('plant-name');
@@ -68,6 +66,7 @@ function acceptRename() { // function for accepting rename
         var requestBody = JSON.stringify({
             name: plantNewName
         });
+        postRequest.setRequestHeader('Content-Type', 'application/json');
         postRequest.send(requestBody);
 
         plantOldName[currentPlantIndex].textContent = plantNewName; // change plant name to user input
@@ -76,7 +75,6 @@ function acceptRename() { // function for accepting rename
 }
 
 function closeRename() {
-    console.log("cancel pushed");
     document.getElementById('modal-backdrop').classList.toggle('hidden'); // hide modal
     document.getElementById('rename-plant-modal').classList.toggle('hidden'); // hide modal
 
@@ -98,7 +96,6 @@ function uprootPlant() { // delete the plant
     currentPlantIndex = updateCurrentIndex(event);
     allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]); // remove from DOM
     allPlantsContainer.splice(currentPlantIndex, 1); // remove from array
-    console.log(allPlantsContainer)
 }
 
 function addPlantButton() { // calls when add plant button is clicked
@@ -147,8 +144,7 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
         photoURL: plantImageSource,
         about: plantAboutMeInfo
     });
-    console.log("request body: ", requestBody);
-    // console.log(postRequest);
+    postRequest.setRequestHeader('Content-Type', 'application/json');
     postRequest.send(requestBody);
 
     // client side stuff -----
