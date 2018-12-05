@@ -5,7 +5,7 @@
 */
 
 
-var allPlantsTitle = document.querySelectorAll('.plant-title');
+// var allPlantsTitle = document.querySelectorAll('.plant-title');
 var allPlantsContainerNode = document.querySelectorAll('.plant-and-button');
 var allPlantsContainer = Array.prototype.slice.call(allPlantsContainerNode); // convert the node to an array; https://davidwalsh.name/nodelist-array
 var currentPlantIndex = -1;
@@ -49,9 +49,19 @@ function sunlightPlant() {
 }
 
 function renamePlant() {
+    document.getElementById('modal-backdrop-name').classList.toggle('hidden-name-modal');
+    document.getElementById('rename-plant-modal').classList.toggle('hidden-name-modal');
+}
+
+function acceptRename(){
     currentPlantIndex = updateCurrentIndex(event);
-    var test1 = document.getElementsByClassName('plant-name');
-    test1[currentPlantIndex].textContent = "renamed";
+    var plantNewName = document.getElementById('flower-name-input').value
+    if(!plantNewName){
+        alert("New name must be filled out."); //send an alert saying this
+    }
+    else{
+        document.getElementsByClassName('plant-name')[currentPlantIndex].textContent = plantNewName;
+    }
 }
 
 function aboutPlant() {
