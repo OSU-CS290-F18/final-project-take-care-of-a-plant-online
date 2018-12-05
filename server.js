@@ -134,7 +134,7 @@ app.post('/plants/deletePlant', function (req, res, next) {
 });
 
 app.post('/plants/:plant/renamePlant', function (req, res, next) {
-    var plant = req.params.plant.toLowerCase();
+    var plant = req.params.plant;
     console.log("RENAME: ", req.body.name);
     console.log("OLDNAME: ", plant);
     if (req.body.name) {
