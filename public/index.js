@@ -49,8 +49,8 @@ function sunlightPlant() {
 }
 
 function renamePlant() {
-    document.getElementById('modal-backdrop-name').classList.toggle('hidden-name-modal');
-    document.getElementById('rename-plant-modal').classList.toggle('hidden-name-modal');
+    document.getElementById('modal-backdrop-name').classList.toggle('hidden');
+    document.getElementById('rename-plant-modal').classList.toggle('hidden');
 }
 
 function acceptRename(){
@@ -61,6 +61,7 @@ function acceptRename(){
     }
     else{
         document.getElementsByClassName('plant-name')[currentPlantIndex].textContent = plantNewName;
+        closeRename();
     }
 }
 
