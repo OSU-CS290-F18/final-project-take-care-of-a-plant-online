@@ -296,10 +296,12 @@ window.addEventListener('DOMContentLoaded', function () {
     document.getElementById('modal-name-cancel').addEventListener('click', closeRename);
 
     // add functions to buttons
-    waterButton[0].addEventListener('click', waterPlant);
-    fertButton[0].addEventListener('click', fertilizePlant);
-    sunButton[0].addEventListener('click', sunlightPlant);
-    renameButton[0].addEventListener('click', renamePlant);
-    aboutButton[0].addEventListener('click', aboutPlant);
-    uprootButton[0].addEventListener('click', uprootPlant);
+    for (var i = 0; i < allToolButtons.length; i++) { // loop for number of plants
+        waterButton[i].addEventListener('click', waterPlant);
+        fertButton[i].addEventListener('click', fertilizePlant);
+        sunButton[i].addEventListener('click', sunlightPlant);
+        renameButton[i].addEventListener('click', renamePlant);
+        aboutButton[i].addEventListener('click', aboutPlant);
+        uprootButton[i].addEventListener('click', uprootPlant);
+    }
 });
