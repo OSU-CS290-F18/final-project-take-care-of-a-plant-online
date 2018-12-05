@@ -34,7 +34,7 @@ var path = require('path');
 var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
-var port = process.env.PORT || 3870;
+var port = process.env.PORT || 3000;
 var plantData = require('./plantData');
 
 var bodyParser = require('body-parser');
@@ -86,19 +86,75 @@ app.get('/plants/:plant', function (req, res, next) {
     });
 });
 
-app.post('/plants/:plant/addPlant', function (req, res, next) {
+app.post('/plant/:plant/addPlant', function (req, res, next) {
+    var plant = req.params.plant.toLowerCase();
+    if (req.body && req.body.photoURL && req.body.about && req.body.name) {
+        var plantCollection = mongoDB.collection('plants');
+        plantCollection.insertOne({
+            "photoURL": req.body.photoURL,
+            "about": req.body.about,
+            "name": name
+        });
+            // function (err, result) {
+            //     if (err) {
+            //         res.status(500).send("Error deleting plant");
+            //     }
+            //     else if (result.matchedCount > 0) {
+            //         res.status(200).send("Success");
+            //     }
+            //     else {
+            //         next();
+            //     }
+            // }
+    }
+});
 
+app.post('/plants/:plant/deletePlant', function (req, res, next) {
+    var plant = req.params.plant.toLowerCase();
+    if (req.body.name) {
+        var plantCollection = mongoDB.collection('plants');
+        plantCollection.deleteOne(
+            { "name": plant },
+            function (err, result) {
+                if (err) {
+                    res.status(500).send("Error deleting plant");
+                }
+                else if (result.matchedCount > 0) {
+                    res.status(200).send("Success");
+                }
+                else {
+                    next();
+                }
+            }
+        );
+    }
+});
+
+app.post('/plants/:plant/renamePlant', function (req, res, next) {
+    var plant = req.params.plant.toLowerCase();
+    if (req.body.name) {
+        var plantCollection = mongoDB.collection('plants');
+        plantCollection.updateOne(
+            { "name": plant },
+            { "$set": { "name": req.body.name}},
+            function (err, result) {
+                if (err) {
+                    res.status(500).send("Error renaming plant");
+                }
+                else if (result.matchedCount > 0) {
+                    res.status(200).send("Success");
+                }
+                else {
+                    next();
+                }
+            }
+        );
+    }
 });
 
 app.get('*', function (req, res, next) {
     res.status(404).render('404');
 });
-
-// app.get(['/', 'index.html'], function (req, res, next) {
-//     res.status(404).render('plantPage', {
-//         plants: plantData
-//     })
-// });
 
 MongoClient.connect(mongoURL, function (err, client) {
     if (err) {
@@ -109,10 +165,6 @@ MongoClient.connect(mongoURL, function (err, client) {
         console.log("== Server is listening on port", port);
     });
 });
-
-// app.listen(port, function () {
-//     console.log("== Server is listening on port", port);
-// });
 
 
 
