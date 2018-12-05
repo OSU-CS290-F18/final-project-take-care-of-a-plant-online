@@ -248,7 +248,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Accepting the modal
     document.getElementById('modal-accept').addEventListener('click', acceptModal);
 
-    // opening rename modal
+    // accepting rename modal
     document.getElementById('modal-name-accept').addEventListener('click', acceptRename);
     // cancelling rename modal
     document.getElementById('modal-name-cancel').addEventListener('click', closeRename);
