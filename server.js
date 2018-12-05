@@ -28,18 +28,17 @@ app.listen(port, function () {
 // var express = require('express');
 // var app = express();
 // var exphbs = require('express-handlebars');
-// var port = process.env.PORT || 3000;
+// var port = process.env.PORT || 3870;
 // var plantData = require('./plantData');
-// console.log("Plant data: ", plantData);
 
 // var bodyParser = require('body-parser');
 // var MongoClient = require('mongodb').MongoClient;
 
-// var mongoHost = process.env.MONGO_HOST;
+// var mongoHost = classmongo.engr.orgegonstate.edu;
 // var mongoPort = process.env.MONGO_PORT || '27027';
-// var mongoUsername = process.env.MONGO_USERNAME;
-// var mongoPassword = process.env.MONGO_PASSWORD;
-// var mongoDBName = process.env.MONGO_DB_NAME;
+// var mongoUsername = cs290_noonanj;
+// var mongoPassword = cs290_noonanj;
+// var mongoDBName = cs290_noonanj;
 
 // var mongoURL = "mongodb://" +
 //     mongoUsername + ":" + mongoPassword + "@" + mongoHost + ":" + mongoPort + "/" + mongoDBName;
