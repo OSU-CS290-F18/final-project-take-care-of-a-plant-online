@@ -60,8 +60,11 @@ function acceptRename() { // function for accepting rename
     }
     else {
         // mongoDB stuff
+        // console.log(plantOldName)
+        // console.log(currentPlantIndex)
         var postRequest = new XMLHttpRequest();
         var requestURL = '/plants/' + plantOldName[currentPlantIndex].textContent + '/renamePlant';
+        console.log(requestURL)
         postRequest.open('POST', requestURL)
         var requestBody = JSON.stringify({
             name: plantNewName
@@ -90,7 +93,7 @@ function aboutPlant() { // about button function
 
 function uprootPlant() { // delete the plant
     currentPlantIndex = updateCurrentIndex(event);
-    
+
     // mongoDB stuff -----
     var plantOldName = document.getElementsByClassName('plant-name');
     var postRequest = new XMLHttpRequest();
