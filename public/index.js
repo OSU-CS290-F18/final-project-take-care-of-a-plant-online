@@ -55,13 +55,20 @@ function renamePlant() {
 
 function acceptRename(){
     currentPlantIndex = updateCurrentIndex(event);
-    var plantNewName = document.getElementById('flower-name-input').value
+    var plantNewName = document.getElementById('flower-name-input').value;
     if(!plantNewName){
         alert("New name must be filled out."); //send an alert saying this
     }
     else{
         document.getElementsByClassName('plant-name')[currentPlantIndex].textContent = plantNewName;
     }
+}
+
+function closeRename(){
+    document.getElementById('modal-backdrop-name').classList.toggle('hidden-name-modal');
+    document.getElementById('rename-plant-modal').classList.toggle('hidden-name-modal');
+
+    document.getElementById('flower-name-input').value = '';
 }
 
 function aboutPlant() {
@@ -76,7 +83,7 @@ function uprootPlant() { // delete the plant
     var allPlantsContainer2 = Array.prototype.slice.call(allPlantsContainerNode2); // convert the node to an array; https://davidwalsh.name/nodelist-array
     currentPlantIndex = updateCurrentIndex(event);
     allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]);
-    allPlantsContainer.splice(currentPlantIndex,1)
+    allPlantsContainer.splice(currentPlantIndex,1);
 }
 
 function addPlantButton(){ // calls when add plant button is clicked
@@ -239,6 +246,11 @@ window.addEventListener('DOMContentLoaded', function () {
     document.getElementById('modal-close').addEventListener('click', closeModal);
     // Accepting the modal
     document.getElementById('modal-accept').addEventListener('click', acceptModal);
+
+    // opening rename modal
+    document.getElementById('modal-name-accept').addEventListener('click', acceptRename);
+    // cancelling rename modal
+    document.getElementById('modal-name-cancel').addEventListener('click', closeRename);
 
     // add functions to buttons
     waterButton[0].addEventListener('click', waterPlant);
