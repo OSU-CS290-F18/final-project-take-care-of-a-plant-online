@@ -52,20 +52,31 @@ function renamePlant() { // function for sunlight rename button
 }
 
 function acceptRename() { // function for accepting rename
-    // mongoDB stuff
+    // console.log("accept pushed");
 
     // client side stuff
     var plantNewName = document.getElementById('flower-newname-input').value; // get user input
+    var plantOldName = document.getElementsByClassName('plant-name');
     if (!plantNewName) { // if field is blank
         alert("New name must be filled out."); //send an alert saying this
     }
     else {
-        document.getElementsByClassName('plant-name')[currentPlantIndex].textContent = plantNewName; // change plant name to user input
+        // mongoDB stuff
+        var postRequest = new XMLHttpRequest();
+        var requestURL = '/plants/' + plantOldName[currentPlantIndex].textContent + '/renamePlant';
+        postRequest.open('POST', requestURL)
+        var requestBody = JSON.stringify({
+            name: plantNewName
+        });
+        postRequest.send(requestBody);
+
+        plantOldName[currentPlantIndex].textContent = plantNewName; // change plant name to user input
         closeRename(); // close rename modal
     }
 }
 
 function closeRename() {
+    console.log("cancel pushed");
     document.getElementById('modal-backdrop').classList.toggle('hidden'); // hide modal
     document.getElementById('rename-plant-modal').classList.toggle('hidden'); // hide modal
 
@@ -87,6 +98,7 @@ function uprootPlant() { // delete the plant
     currentPlantIndex = updateCurrentIndex(event);
     allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]); // remove from DOM
     allPlantsContainer.splice(currentPlantIndex, 1); // remove from array
+    console.log(allPlantsContainer)
 }
 
 function addPlantButton() { // calls when add plant button is clicked
@@ -131,9 +143,9 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     var requestURL = '/plants/addPlant';
     postRequest.open('POST', requestURL)
     var requestBody = JSON.stringify({
-        name: plantName,
-        photoURL: plantImageSource,
-        about: plantAboutMeInfo
+        "name": plantName,
+        "photoURL": plantImageSource,
+        "about": plantAboutMeInfo
     });
     postRequest.send(requestBody);
 
@@ -153,7 +165,6 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     renameButton[indexNum].addEventListener('click', renamePlant);
     aboutButton[indexNum].addEventListener('click', aboutPlant);
     uprootButton[indexNum].addEventListener('click', uprootPlant);
-
 
 
     // // plant and button div
