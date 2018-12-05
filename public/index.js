@@ -21,7 +21,6 @@ var aboutButton = document.getElementsByClassName('about');
 var uprootButton = document.getElementsByClassName('uproot');
 
 var allToolButtons = document.getElementsByClassName('tool-buttons');
-// var allButtons = document.getElementsByClassName('button');
 
 function updateCurrentIndex(event){
     for(var i = 0; i < allToolButtons.length; i++){
@@ -34,7 +33,6 @@ function updateCurrentIndex(event){
 function waterPlant() {
     // unhide watering can
     currentPlantIndex = updateCurrentIndex(event);
-    console.log(currentPlantIndex)
     waterIcon[currentPlantIndex].classList.remove('hidden');
 }
 
