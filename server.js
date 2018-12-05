@@ -54,7 +54,7 @@ var mongoDB = null;
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
@@ -88,12 +88,14 @@ app.get('/plants/:plant', function (req, res, next) {
 
 app.post('/plants/addPlant', function (req, res, next) {
     //var plant = req.params.plant.toLowerCase();
+    console.log("ADDING A NEW PLANT", req.body);
+
     if (req.body && req.body.photoURL && req.body.about && req.body.name) {
         var plantCollection = mongoDB.collection('plants');
         plantCollection.insertOne({
             "photoURL": req.body.photoURL,
             "about": req.body.about,
-            "name": name
+            "name": req.body.name
             },
             function (err, result) {
                 if (err) {
