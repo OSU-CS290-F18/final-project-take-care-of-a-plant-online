@@ -77,7 +77,7 @@ app.get('/plants/:plant', function (req, res, next) {
         if (err) {
             res.status(500).send("Error communicating with DB.");
         }
-        else if (peopleDocs.length > 0) {
+        else if (plantDocs.length > 0) {
             res.status(200).render('plantPage', plantDocs[0]);
         }
         else {
@@ -86,26 +86,27 @@ app.get('/plants/:plant', function (req, res, next) {
     });
 });
 
-app.post('/plant/:plant/addPlant', function (req, res, next) {
-    var plant = req.params.plant.toLowerCase();
+app.post('/plants/addPlant', function (req, res, next) {
+    //var plant = req.params.plant.toLowerCase();
     if (req.body && req.body.photoURL && req.body.about && req.body.name) {
         var plantCollection = mongoDB.collection('plants');
         plantCollection.insertOne({
             "photoURL": req.body.photoURL,
             "about": req.body.about,
             "name": name
-        });
-            // function (err, result) {
-            //     if (err) {
-            //         res.status(500).send("Error deleting plant");
-            //     }
-            //     else if (result.matchedCount > 0) {
-            //         res.status(200).send("Success");
-            //     }
-            //     else {
-            //         next();
-            //     }
-            // }
+            },
+            function (err, result) {
+                if (err) {
+                    res.status(500).send("Error deleting plant");
+                }
+                else if (result.matchedCount > 0) {
+                    res.status(200).send("Success");
+                }
+                else {
+                    next();
+                }
+            }
+        );
     }
 });
 
