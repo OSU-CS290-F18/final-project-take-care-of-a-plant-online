@@ -335,6 +335,8 @@ body {
 
 .check-list {
   display: flex;
+  flex-direction: column;
+  font-size: 30px;
 }
 
 .hidden-water {
