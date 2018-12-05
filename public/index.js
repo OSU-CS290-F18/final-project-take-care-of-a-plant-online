@@ -66,6 +66,7 @@ function acceptRename() { // function for accepting rename
         var requestBody = JSON.stringify({
             name: plantNewName
         });
+        console.log(requestBody);
         postRequest.setRequestHeader('Content-Type', 'application/json');
         postRequest.send(requestBody);
 
@@ -88,12 +89,22 @@ function aboutPlant() { // about button function
 }
 
 function uprootPlant() { // delete the plant
-    // mongoDB stuff
+    currentPlantIndex = updateCurrentIndex(event);
+    
+    // mongoDB stuff -----
+    var plantOldName = document.getElementsByClassName('plant-name');
+    var postRequest = new XMLHttpRequest();
+    var requestURL = '/plants/deletePlant';
+    postRequest.open('POST', requestURL);
+    var requestBody = JSON.stringify({
+        name: plantOldName[currentPlantIndex].textContent
+    });
+    postRequest.setRequestHeader('Content-Type', 'application/json');
+    postRequest.send(requestBody);
 
     // client side stuff
     var allPlantsContainerNode2 = document.querySelectorAll('.plant-and-button');
     var allPlantsContainer2 = Array.prototype.slice.call(allPlantsContainerNode2); // convert the node to an array; https://davidwalsh.name/nodelist-array
-    currentPlantIndex = updateCurrentIndex(event);
     allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]); // remove from DOM
     allPlantsContainer.splice(currentPlantIndex, 1); // remove from array
 }
