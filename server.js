@@ -112,12 +112,12 @@ app.post('/plants/addPlant', function (req, res, next) {
     }
 });
 
-app.post('/plants/:plant/deletePlant', function (req, res, next) {
-    var plant = req.params.plant.toLowerCase();
+app.post('/plants/deletePlant', function (req, res, next) {
+    //var plant = req.params.plant.toLowerCase();
     if (req.body.name) {
         var plantCollection = mongoDB.collection('plants');
         plantCollection.deleteOne(
-            { "name": plant },
+            { "name": req.body.name },
             function (err, result) {
                 if (err) {
                     res.status(500).send("Error deleting plant");
@@ -135,22 +135,24 @@ app.post('/plants/:plant/deletePlant', function (req, res, next) {
 
 app.post('/plants/:plant/renamePlant', function (req, res, next) {
     var plant = req.params.plant.toLowerCase();
+    console.log("RENAME: ", req.body.name);
+    console.log("OLDNAME: ", plant);
     if (req.body.name) {
         var plantCollection = mongoDB.collection('plants');
         plantCollection.updateOne(
             { "name": plant },
-            { "$set": { "name": req.body.name}},
-            function (err, result) {
-                if (err) {
-                    res.status(500).send("Error renaming plant");
-                }
-                else if (result.matchedCount > 0) {
-                    res.status(200).send("Success");
-                }
-                else {
-                    next();
-                }
-            }
+            { "$set": { "name": req.body.name}}
+            // function (err, result) {
+            //     if (err) {
+            //         res.status(500).send("Error renaming plant");
+            //     }
+            //     else if (result.matchedCount > 0) {
+            //         res.status(200).send("Success");
+            //     }
+            //     else {
+            //         next();
+            //     }
+            // }
         );
     }
 });
