@@ -5,129 +5,143 @@
 */
 
 
-// var allPlantsTitle = document.querySelectorAll('.plant-title');
-var allPlantsContainerNode = document.querySelectorAll('.plant-and-button');
+var allPlantsContainerNode = document.querySelectorAll('.plant-and-button'); // all plant posts
 var allPlantsContainer = Array.prototype.slice.call(allPlantsContainerNode); // convert the node to an array; https://davidwalsh.name/nodelist-array
-var currentPlantIndex = -1;
-var allPlantsContainerSection = document.getElementById('plants');
+var currentPlantIndex = -1; // index for array of classes
+var allPlantsContainerSection = document.getElementById('plants'); // section of plants
 
-var waterButton = document.getElementsByClassName('water');
-var waterIcon = document.getElementsByClassName('plant-watered');
-var fertButton = document.getElementsByClassName('fertilize');
-var fertIcon = document.getElementsByClassName('plant-fert');
-var sunButton = document.getElementsByClassName('sunlight');
-var renameButton = document.getElementsByClassName('rename');
-var aboutButton = document.getElementsByClassName('about');
-var uprootButton = document.getElementsByClassName('uproot');
+var waterButton = document.getElementsByClassName('water'); // array of water buttons
+var fertButton = document.getElementsByClassName('fertilize'); // array of fertilize buttons
+var sunButton = document.getElementsByClassName('sunlight'); // array of sunlight buttons
+var renameButton = document.getElementsByClassName('rename'); // array of rename buttons
+var aboutButton = document.getElementsByClassName('about'); // array of about button
+var uprootButton = document.getElementsByClassName('uproot'); // array of uproot button
 
-var allToolButtons = document.getElementsByClassName('tool-buttons');
+var allToolButtons = document.getElementsByClassName('tool-buttons'); // array of button toolbars
 
-function updateCurrentIndex(event){
-    for(var i = 0; i < allToolButtons.length; i++){
-        if(allToolButtons[i] == event.target.parentNode.parentNode.parentNode){
+function updateCurrentIndex(event) { // checks to see which button was pressed
+    for (var i = 0; i < allToolButtons.length; i++) {
+        if (allToolButtons[i] == event.target.parentNode.parentNode.parentNode) {
             return i;
         }
     }
 }
 
-function waterPlant() {
+function waterPlant() { // function for water button
     // unhide watering can
     currentPlantIndex = updateCurrentIndex(event);
-    waterIcon[currentPlantIndex].classList.remove('hidden');
+    document.getElementsByClassName('plant-watered')[currentPlantIndex].classList.remove('hidden');
 }
 
-function fertilizePlant() {
+function fertilizePlant() { // function for fertilize button
     // unhide fertilizer bag
     currentPlantIndex = updateCurrentIndex(event);
     document.getElementsByClassName('plant-fert')[currentPlantIndex].classList.remove('hidden');
 }
 
-function sunlightPlant() {
+function sunlightPlant() { // function for sunlight button
     // unhide sunlight
     currentPlantIndex = updateCurrentIndex(event);
     document.getElementsByClassName('plant-sun')[currentPlantIndex].classList.remove('hidden');
 }
 
-function renamePlant() {
-    document.getElementById('modal-backdrop-name').classList.toggle('hidden');
-    document.getElementById('rename-plant-modal').classList.toggle('hidden');
+function renamePlant() { // function for sunlight rename button
+    currentPlantIndex = updateCurrentIndex(event);
+    document.getElementById('modal-backdrop').classList.toggle('hidden'); // unhide modal
+    document.getElementById('rename-plant-modal').classList.toggle('hidden'); // unhide modal
 }
 
-function acceptRename(){
-    currentPlantIndex = updateCurrentIndex(event);
-    var plantNewName = document.getElementById('flower-name-input').value;
-    if(!plantNewName){
+function acceptRename() { // function for accepting rename
+    // mongoDB stuff
+
+    // client side stuff
+    var plantNewName = document.getElementById('flower-newname-input').value; // get user input
+    if (!plantNewName) { // if field is blank
         alert("New name must be filled out."); //send an alert saying this
     }
-    else{
-        document.getElementsByClassName('plant-name')[currentPlantIndex].textContent = plantNewName;
-        closeRename();
+    else {
+        document.getElementsByClassName('plant-name')[currentPlantIndex].textContent = plantNewName; // change plant name to user input
+        closeRename(); // close rename modal
     }
 }
 
-function closeRename(){
-    document.getElementById('modal-backdrop-name').classList.toggle('hidden-name-modal');
-    document.getElementById('rename-plant-modal').classList.toggle('hidden-name-modal');
+function closeRename() {
+    document.getElementById('modal-backdrop').classList.toggle('hidden'); // hide modal
+    document.getElementById('rename-plant-modal').classList.toggle('hidden'); // hide modal
 
-    document.getElementById('flower-name-input').value = '';
+    document.getElementById('flower-newname-input').value = ''; // reset input value
 }
 
-function aboutPlant() {
+function aboutPlant() { // about button function
     // show description
     currentPlantIndex = updateCurrentIndex(event);
-    var textBubble = document.getElementsByClassName('talk-bubble');
-    textBubble[currentPlantIndex].classList.toggle('hidden-bubble');
+    document.getElementsByClassName('talk-bubble')[currentPlantIndex].classList.toggle('hidden-bubble'); // unhide text bubble
 }
 
 function uprootPlant() { // delete the plant
+    // mongoDB stuff
+
+    // client side stuff
     var allPlantsContainerNode2 = document.querySelectorAll('.plant-and-button');
     var allPlantsContainer2 = Array.prototype.slice.call(allPlantsContainerNode2); // convert the node to an array; https://davidwalsh.name/nodelist-array
     currentPlantIndex = updateCurrentIndex(event);
-    allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]);
-    allPlantsContainer.splice(currentPlantIndex,1);
+    allPlantsContainer2[currentPlantIndex].parentNode.removeChild(allPlantsContainer2[currentPlantIndex]); // remove from DOM
+    allPlantsContainer.splice(currentPlantIndex, 1); // remove from array
 }
 
-function addPlantButton(){ // calls when add plant button is clicked
+function addPlantButton() { // calls when add plant button is clicked
     document.getElementById('modal-backdrop').classList.toggle('hidden'); //unhide backdrop
     document.getElementById('add-plant-modal').classList.toggle('hidden'); //unhide modal
 }
 
-function closeModal(){
+function closeModal() {
     document.getElementById('modal-backdrop').classList.toggle('hidden'); //hide backdrop
     document.getElementById('add-plant-modal').classList.toggle('hidden'); //hide modal
 
-    document.getElementById('flower-name-input').value = '';
+    // reset inputs
+    document.getElementById('flower-newname-input').value = '';
     document.getElementById('flower-photo-input').value = '';
     document.getElementById('flower-about-input').value = '';
 }
 
-function acceptModal(){
+function acceptModal() {
+    // get user inputs
     var plantName = document.getElementById('flower-name-input').value;
     var plantImageSource = document.getElementById('flower-photo-input').value;
     var plantAboutMeInfo = document.getElementById('flower-about-input').value;
 
-    if( (!plantName) || (!plantImageSource) || (!plantAboutMeInfo) ){
+    if ((!plantName) || (!plantImageSource) || (!plantAboutMeInfo)) { // if fields are blank
         alert("All fields must be filled out."); //send an alert saying this
     }
-    else{
+    else {
         addPlant(plantName, plantImageSource, plantAboutMeInfo);
         closeModal();
     }
 }
 
 function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
-    var plantInfo = {
-        name:plantName,
-        photoURL:plantImageSource,
-        about:plantAboutMeInfo
+    var plantInfo = { // create plant info
+        name: plantName,
+        photoURL: plantImageSource,
+        about: plantAboutMeInfo
     };
 
-    allPlantsContainer.push(plantInfo);
-    // allPlantsContainer.push(postHTML);
+    // mongoDB stuff -----
+    var postRequest = new XMLHttpRequest();
+    var requestURL = '/plants/addPlant';
+    var requestBody = JSON.stringify({
+        plantInfo
+    });
 
+    // client side stuff -----
     var postHTML = Handlebars.templates.plant(plantInfo); // turn into dom element
     allPlantsContainerSection.insertAdjacentHTML('beforeend', postHTML);
 
+    allPlantsContainer.push(plantInfo);
+    // allPlantsContainer.push(postHTML);
+    // console.log(allPlantsContainer)
+
+    // add functions to new buttons
     indexNum = allPlantsContainer.length - 1;
     waterButton[indexNum].addEventListener('click', waterPlant);
     fertButton[indexNum].addEventListener('click', fertilizePlant);
@@ -166,7 +180,7 @@ function addPlant(plantName, plantImageSource, plantAboutMeInfo) { // new plant
     // innerButtonDiv1.appendChild(button1);
     // outterButtonDiv1.appendChild(innerButtonDiv1);
     // buttonSection.appendChild(outterButtonDiv1);
-    
+
     // // fertilize
     // var outterButtonDiv2 = document.createElement('div');
     // var innerButtonDiv2 = document.createElement('div');
